@@ -1,0 +1,37 @@
+// Pequena interação para o site de unhas
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dicas = [
+        'Use luvas ao lavar louça para proteger as unhas.',
+        'Evite removedores de esmalte com acetona.',
+        'Alimente-se bem para fortalecer as unhas.'
+    ];
+    const dicasSection = document.querySelector('#dicas ol');
+    if (dicasSection) {
+        dicas.forEach(dica => {
+            const li = document.createElement('li');
+            li.textContent = dica;
+            dicasSection.appendChild(li);
+        });
+    }
+
+    // Controle de tamanho da fonte
+    let tamanhoFonte = 16;
+    const main = document.querySelector('main');
+    const aumentarBtn = document.getElementById('aumentar-fonte');
+    const diminuirBtn = document.getElementById('diminuir-fonte');
+    function atualizarFonte() {
+        if (main) main.style.fontSize = tamanhoFonte + 'px';
+    }
+    if (aumentarBtn && diminuirBtn) {
+        aumentarBtn.addEventListener('click', function() {
+            tamanhoFonte = Math.min(tamanhoFonte + 2, 28);
+            atualizarFonte();
+        });
+        diminuirBtn.addEventListener('click', function() {
+            tamanhoFonte = Math.max(tamanhoFonte - 2, 12);
+            atualizarFonte();
+        });
+    }
+    atualizarFonte();
+});
